@@ -1,9 +1,8 @@
 import React , { useState } from 'react';
 import './Login.css';
 import FloatingLabelInput from 'react-floating-label-input';
-// import axios from './axios.js';
+import axios from '../node_modules/axios';
 import { withRouter } from 'react-router-dom';
-// import moment from "moment";
 import doctor_icon from './img/doctor-icon.png';
 // import moon from './img/moon.svg';
 // import sunRay from './img/sun_ray.svg';
@@ -14,35 +13,34 @@ function Login(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
 
-//   function login(username,password,history){
-//     axios.post('/login',{
-//       username: username,
-//       password: password
-//     }).then(res=>{
-//       if(res.status === 200){
-//         localStorage.setItem('token', res.data.user.token)
-//         localStorage.setItem('startDate',moment(res.data.user.startDate,"YYYY-MM-DD"));
-//         localStorage.setItem('maxEUV',res.data.user.maxEUV);
-//         history.push({
-//           pathname:'/calendar',
-//           state: { username: username}
-//         });
-//       }
-//     }).catch(err=>{
-//       if(err.response.status === 400){
-//         setStatus('*ชื่อผู้ใช้หรือรหัสผ่านผิด')
-//       }
-//       if(err.response.status === 422){
-//         let res = err.response.data
-//         if(res.errors.password){
-//           setStatus('*กรุณากรอกรหัสผ่าน')
-//         }
-//         if(res.errors.username){
-//           setStatus('*กรุณากรอกชื่อผู้ใช้')
-//         }
-//       }
-//     })
-//   }
+  function login(username,password,history){
+    axios.post('http://localhost:8080/login',{
+      username: username,
+      password: password
+    }).then(res=>{
+      if(res.status === 200){
+        console.log('success')
+        localStorage.setItem('token', res.data.user.token)
+        history.push({
+          pathname:'/Dashboard',
+          state: { username: username}
+        });
+      }
+    }).catch(err=>{
+      if(err.response.status === 400){
+        // setStatus('*ชื่อผู้ใช้หรือรหัสผ่านผิด')
+      }
+      if(err.response.status === 422){
+        let res = err.response.data
+        if(res.errors.password){
+          // setStatus('*กรุณากรอกรหัสผ่าน')
+        }
+        if(res.errors.username){
+          // setStatus('*กรุณากรอกชื่อผู้ใช้')
+        }
+      }
+    })
+  }
 
   return (
     <div className="container" >
@@ -69,7 +67,7 @@ function Login(props) {
         />
       </div>
       {/* onClick={()=>login(username,password,props.history)} */}
-      <div className="LogButton" >
+      <div className="LogButton" onClick={()=>login(username,password,props.history)}>
         <p>เข้าสู่ระบบ</p>
       </div>
     </div>

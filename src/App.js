@@ -6,14 +6,14 @@ import {
 } from 'react-router-dom'
 
 import Login from './Login';
-import DashBoard from './Dashboard';
+import Dashboard from './Dashboard';
 
 function App() {
   return (
     <Router>
       <Route path="/" render={props => <Redirect to="/login"/>}/>
       <Route path="/login" component={Login}/>
-      <Route path="/dash" component={DashBoard}/>
+      <Route path="/Dashboard" component={Dashboard}/>
     </Router>
   );
 }

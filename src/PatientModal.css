@@ -1,0 +1,18 @@
+.moreContainer{
+    padding-right: 10%;
+    width: 50em;
+    display: flex;
+
+}
+  .moreBtn{
+    background-color:beige ;
+    height: 50%;
+  }
+  
+  .patient-container{
+    display: flex;
+  }
+  
+  p {
+    padding-left: 5%;
+  }
