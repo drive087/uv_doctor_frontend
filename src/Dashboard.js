@@ -18,7 +18,7 @@ function Dashboard(props) {
   function enterCreatePatient(){
     props.history.push({
       pathname:'/CreatePatient',
-      state: { username: props.location.state.username}
+      state: { username: props.location.state.username,_id: props.location.state._id}
     });
   }
 
@@ -44,7 +44,9 @@ function Dashboard(props) {
   }
 
   useEffect(() => {
-        axios.get('http://localhost:8080/'+props.location.state.username+'/getpatients',
+      console.log(props.location.state._id);
+
+        axios.get('http://localhost:8080/'+props.location.state._id+'/getpatients',
         {
           headers: { Authorization: `Token ${localStorage.getItem('token')}` }
         })

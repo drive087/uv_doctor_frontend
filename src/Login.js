@@ -23,7 +23,7 @@ function Login(props) {
         localStorage.setItem('token', res.data.user.token)
         history.push({
           pathname:'/Dashboard',
-          state: { username: username}
+          state: { username: username,_id: res.data.user._id}
         });
       }
     }).catch(err=>{

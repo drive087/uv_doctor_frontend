@@ -13,12 +13,14 @@ import './CreatePatient.css';
 
 function CreatePatient(props) {
 
-    const [doctor, setDoctor] = useState(props.location.state.username);
+    const [doctor, setDoctor] = useState(props.location.state._id);
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [birthDate,setbirthDate] = useState('');
     const [startDate, setStartDate] = useState('');    
     const [skin, setSkinType] = useState('');
+    
+    
     function onCreatePatient(){
 
       //let body = firstname,lastname,{birthDate},{startDate},{skinType};
@@ -34,7 +36,7 @@ function CreatePatient(props) {
         if(res.status === 201){
           props.history.push({
             pathname:'/Dashboard',
-            state: { username: props.location.state.username}
+            state: { username: props.location.state.username,_id: props.location.state._id}
           });
         }
       })

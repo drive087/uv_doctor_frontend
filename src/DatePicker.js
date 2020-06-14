@@ -4,13 +4,11 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display: 'flex',
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
     width: 170,
+    height:100,
   },
 }));
 
@@ -29,7 +27,7 @@ export default function DatePickers(props) {
         onChange = {props.onChange}
         className={classes.textField}
         color = 'primary'  
-        size = 'normal'      
+        size = 'small'      
         InputLabelProps={{
           shrink: true,
         }}
