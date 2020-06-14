@@ -16,7 +16,7 @@ const PatientModal = ({ _id,props }) => {
   const [username, setUsername] = useState(false);
 
   const [startDate, setStartDate] = useState('');    
-  const [skin, setSkinType] = useState('');
+  const [skin, setSkinType] = useState('1');
 
 
   const customStyles = {
@@ -48,6 +48,7 @@ const PatientModal = ({ _id,props }) => {
       headers: { Authorization: `Token ${localStorage.getItem('token')}` },  
     }).then(res=>{
       if(res.status === 201){
+        window.location.reload();
         closeModal();
       }
     })

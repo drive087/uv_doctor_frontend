@@ -9,6 +9,8 @@ import DatePicker from './DatePicker';
 import doctor_icon from './img/doctor-icon.png';
 import PatientModal from './PatientModal';
 import './CreatePatient.css';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 
 function CreatePatient(props) {
@@ -41,6 +43,8 @@ function CreatePatient(props) {
         }
       })
       }
+
+      
   
       // .catch(err=>{
       //   if(err.response.status === 400){
@@ -57,10 +61,18 @@ function CreatePatient(props) {
       //   }
       // })
     }
+
+    function onClose(){
+      props.history.push({
+        pathname:'/Dashboard',
+        state: { username: props.location.state.username,_id: props.location.state._id}
+      });
+    }
     
   
   return (
     <div className="container" >
+        <CloseIcon onClick={()=>onClose()} style={{alignSelf:'flex-end', margin:'5px'}}/>
         <h1>Create Patient</h1>
         <div className="inputContainer">
             <div class="Row">

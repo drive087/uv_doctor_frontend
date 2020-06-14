@@ -24,7 +24,10 @@ function Dashboard(props) {
     });
   }
 
-  
+  function onLogout(){
+    localStorage.setItem('token', null);
+    window.location.reload();
+  }
 
   function renderList(patients){
   return (
@@ -73,7 +76,7 @@ function Dashboard(props) {
   return (
     <div>
       <div className="header">
-          <p className="welcomeText">Welcome  {props.location.state.username}</p> 
+          <p className="welcomeText">Welcome  {props.location.state.username} <button onClick={()=>onLogout()}>Logout</button></p> 
       </div>
       <p>Patient List
         <Fab color="primary" aria-label="add"  style={{marginLeft:'3%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
