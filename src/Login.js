@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import './Login.css';
 import FloatingLabelInput from 'react-floating-label-input';
 import axios from '../node_modules/axios';
@@ -12,6 +12,24 @@ import doctor_icon from './img/doctor-icon.png';
 function Login(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
+  
+
+  useEffect(() => {
+
+      axios.get('http://localhost:8080/login',
+      {
+        headers: { Authorization: `Token ${localStorage.getItem('token')}` }
+      })
+      .then(res=>{
+          if(res.status === 200){
+            setUser(res.data.user.username) 
+            props.history.push({
+              pathname:'/Dashboard',
+              state: { username: res.data.user.username,_id: res.data.user._id}
+            });
+          }
+      })
+  },[])
 
   function login(username,password,history){
     axios.post('http://localhost:8080/login',{
@@ -41,8 +59,8 @@ function Login(props) {
       }
     })
   }
-
-  return (
+  if (username !== null) return null
+  else return (
     <div className="container" >
         <img 
         src={doctor_icon} 
