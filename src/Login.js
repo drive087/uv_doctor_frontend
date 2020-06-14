@@ -59,8 +59,8 @@ function Login(props) {
       }
     })
   }
-  if (username !== null) return null
-  else return (
+ 
+  return (
     <div className="container" >
         <img 
         src={doctor_icon} 
