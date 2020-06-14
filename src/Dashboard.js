@@ -7,6 +7,8 @@ import doctor_icon from './img/doctor-icon.png';
 import PatientModal from './PatientModal';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { Paper, InputBase, IconButton } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 function Dashboard(props) {
@@ -32,7 +34,13 @@ function Dashboard(props) {
 
         <div>
           <li className="patient-container">
-            <p>{patient.firstname}</p> <p>{patient.lastname}</p><PatientModal _id={patient._id} props={props}/>
+            <p>
+              {patient.firstname}
+            </p> 
+            <p>
+              {patient.lastname}
+            </p>
+            <PatientModal _id={patient._id} props={props}/>
           </li>
         </div>
       )
@@ -64,13 +72,24 @@ function Dashboard(props) {
   }
   return (
     <div>
-      <div>
-      <p className="welcomeText">Welcome  {props.location.state.username}</p> 
-      <Fab color="primary" aria-label="add"  style={{marginLeft:'40%', marginTop:'5%'}}onClick={()=>enterCreatePatient()}>
-        <AddIcon />
-      </Fab>
+      <div className="header">
+          <p className="welcomeText">Welcome  {props.location.state.username}</p> 
       </div>
-      <p>Patient List</p>
+      <p>Patient List
+        <Fab color="primary" aria-label="add"  style={{marginLeft:'3%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
+          <AddIcon />
+        </Fab>
+      </p>
+      <Paper className='search'>
+        <InputBase
+          className='inputPatient'
+          placeholder="Search your patient"
+          inputProps={{ 'aria-label': 'search patient' }}
+        />
+        <IconButton type="submit" className='iconBtn' aria-label="search">
+          <SearchIcon />
+        </IconButton>
+      </Paper>
       <ul>{renderList(patients)}</ul>
       
     </div>

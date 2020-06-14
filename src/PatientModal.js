@@ -5,6 +5,7 @@ import DatePicker from './DatePicker';
 import EditIcon from '@material-ui/icons/Edit';
 import CloseIcon from '@material-ui/icons/Close';
 import './PatientModal.css';
+import Button from '@material-ui/core/Button';
 
 
 const PatientModal = ({ _id,props }) => {
@@ -95,8 +96,11 @@ function calcAge(dateString) {
     if(patient == null){
       return (
       
-        <div className = 'moreContainer'style={{ display: 'flex', justifyContent: 'center'}}>
-          <button className="moreBtn" onClick={openModal}>More</button>
+        <div className = 'moreContainer'style={{ display: 'flex', justifyContent: 'end'}}>
+          <Button onClick={openModal}>
+            More
+          </Button>
+          {/* <button className="moreBtn" onClick={openModal}>More</button> */}
           <Modal
             isOpen={modalIsOpen}
             // onAfterOpen={afterOpenModal()}

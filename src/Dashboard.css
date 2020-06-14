@@ -13,8 +13,9 @@ ul li {
   padding: 12px;
 }
 
-p {
+li p {
   padding-left: 5%;
+  text-transform: uppercase;
 }
 
 .patient-container{
@@ -24,8 +25,32 @@ p {
 .welcomeText{
   display: inline;
   padding-top: '20px';
+  color: white;
 }
 
 .moreBtn{
   margin-left: 20%;
+}
+
+.header{
+  padding: 5% 0% 5% 0%;
+  background-color: rgb(222, 92, 142);
+
+}
+
+.search{
+  padding: '2px 4px';
+  display: 'flex';
+  align-items: 'center';
+  width: 400,
+}
+
+.inputPatient{
+  margin-left: 5%;
+  flex: 2;
+  width: fit-content;
+}
+
+.iconBtn{
+  padding: 5%
 }
