@@ -17,3 +17,17 @@
   p {
     padding-left: 5%;
   }
+
+
+.SubmitBtn{
+  width: 25vw;
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c5892;
+  font-weight: 500;
+  border-radius: 1vw;
+}
+
+
