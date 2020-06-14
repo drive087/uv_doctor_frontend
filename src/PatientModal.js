@@ -135,10 +135,11 @@ function calcAge(dateString) {
                                   label="Select Start Date"
                                   type='date'
                                   className="dateinput"
+                                  defaultValue={patient.startDate.substring(0,10)}
                                   onChange={event =>setStartDate(event.target.value)}
                                 /> </li>
                 <li>Skintype: <select class="Column" name="cars" id="cars" onChange={event =>setSkinType(event.target.value)}>
-                    <option value="none" selected disabled hidden>Please Select</option> 
+                    <option value={patient.skin} selected disabled hidden>{patient.skin}</option> 
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
