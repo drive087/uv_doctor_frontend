@@ -49,7 +49,7 @@ function Login(props) {
         width="260x" 
         height="250px"
         />
-      <div className="inputContainer">
+      <div className="inputContainer" style={{height:'200px'}}>
         <FloatingLabelInput
           label="ชื่อผู้ใช้"
           id="username"
@@ -66,7 +66,6 @@ function Login(props) {
           value={password}
         />
       </div>
-      {/* onClick={()=>login(username,password,props.history)} */}
       <div className="LogButton" onClick={()=>login(username,password,props.history)}>
         <p>เข้าสู่ระบบ</p>
       </div>

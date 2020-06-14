@@ -1,10 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import axios from '../node_modules/axios';
 import Modal from 'react-modal';
+import EditIcon from '@material-ui/icons/Edit';
 import './PatientModal.css';
 
 
-const PatientModal = ({ _id }) => {
+const PatientModal = ({ _id,props }) => {
 
   const [modalIsOpen, setmodalIsOpen] = useState('');
   const [patient, setPatient] = useState(null);
@@ -25,7 +26,7 @@ const PatientModal = ({ _id }) => {
   };
   
   useEffect(() => {
-    axios.get('http://localhost:8080/test101/getpatients',
+    axios.get('http://localhost:8080/'+props.location.state.username+'/getpatients',
     {
       headers: { Authorization: `Token ${localStorage.getItem('token')}` }
     })
@@ -33,8 +34,6 @@ const PatientModal = ({ _id }) => {
         if(res.status === 200){
             var patientlist = []
             for(var x in res.data){
-              console.log(res.data[x]._id)
-              console.log(_id)
               if(res.data[x]._id == _id){
                 setPatient(res.data[x])
               }
@@ -42,6 +41,12 @@ const PatientModal = ({ _id }) => {
         }
     })
 },[])
+
+function calcAge(dateString) {
+  dateString = dateString.substring(0,10);
+  var birthday = +new Date(dateString);
+  return ~~((Date.now() - birthday) / (31557600000));
+}
 
   const openModal = async () => {
     await setmodalIsOpen(true);
@@ -89,14 +94,15 @@ const PatientModal = ({ _id }) => {
           contentLabel="Example Modal"
         >
         <div style={{width:'250px'}}>
-            <h1>Patient</h1>
+            <h1>Patient <EditIcon style={{float:'right'}}/></h1>
             <ul>
                 <li>Name: {patient.firstname}</li>
-                <li>Surname: {patient.surname}</li>
-                <li>Age: {patient.age}</li>
-                <li>Startdate: {patient.startDate.substring(0,9)}</li>
-                <li>Skintype: {patient.skin}</li>
+                <li>Surname: {patient.lastname}</li>
+                <li>Age: {calcAge(patient.birthDate)}</li>
+                <li>Startdate: {patient.startDate.substring(0,10)} </li>
+                <li>Skintype: {patient.skin} </li>
             </ul>
+            <button>Edit</button>
         </div>    
 
         </Modal>

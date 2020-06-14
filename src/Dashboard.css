@@ -21,3 +21,11 @@ p {
   display: flex;
 }
 
+.welcomeText{
+  display: inline;
+  padding-top: '20px';
+}
+
+.moreBtn{
+  margin-left: 20%;
+}

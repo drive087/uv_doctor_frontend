@@ -5,8 +5,9 @@
 
 }
   .moreBtn{
-    background-color:beige ;
+    background-color:azure ;
     height: 50%;
+    float: right;
   }
   
   .patient-container{
