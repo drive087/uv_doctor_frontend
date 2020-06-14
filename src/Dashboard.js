@@ -25,11 +25,9 @@ function Dashboard(props) {
   
 
   function renderList(patients){
-    console.log(Date.now())
   return (
     
     patients.map((patient) => {
-      console.log(patient)
       return (
 
         <div>
@@ -44,7 +42,6 @@ function Dashboard(props) {
   }
 
   useEffect(() => {
-      console.log(props.location.state._id);
 
         axios.get('http://localhost:8080/'+props.location.state._id+'/getpatients',
         {
@@ -58,7 +55,6 @@ function Dashboard(props) {
                 }
 
                 setPatient(patientlist);
-                console.log(patientlist);
             }
         })
     },[])
