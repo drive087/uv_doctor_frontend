@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     width: 170,
-    height:100,
+    height:40,
   },
 }));
 

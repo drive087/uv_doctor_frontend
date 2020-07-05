@@ -9,12 +9,13 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Paper, InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-
+import PatientCard from './PatientCard';
 
 function Dashboard(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
   const [patients, setPatient] = useState(null);
+  const [search, setSearch] = useState("");
 
 
   function enterCreatePatient(){
@@ -30,26 +31,40 @@ function Dashboard(props) {
   }
 
   function renderList(patients){
-  return (
-    
-    patients.map((patient) => {
-      return (
 
-        <div>
-          <li className="patient-container">
-            <p>
-              {patient.firstname}
-            </p> 
-            <p>
-              {patient.lastname}
-            </p>
-            <PatientModal _id={patient._id} props={props}/>
-          </li>
-        </div>
+    if(patients == ""){
+      return (      
+        patients.map((patient) => {
+          return (
+            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+              <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
+            </div>
+          )
+        })
       )
-
-    })
-  )
+    }
+    var count = 0;
+    return (  
+      patients.map((patient) => {
+        if(patient.firstname.includes(search) || patient.lastname.includes(search)){
+          return (
+            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+              <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
+            </div>
+          )
+        }
+        else{
+          count = count + 1;
+          if(count == patients.length){
+            return (
+              <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+                  Not Found
+            </div>
+            )
+          }
+        }
+      })
+    )      
   }
 
   useEffect(() => {
@@ -78,22 +93,28 @@ function Dashboard(props) {
       <div className="header">
           <p className="welcomeText">Welcome  {props.location.state.username} <button onClick={()=>onLogout()}>Logout</button></p> 
       </div>
-      <p>Patient List
-        <Fab color="primary" aria-label="add"  style={{marginLeft:'3%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
+      <div>
+      <p>Patient List 
+      <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
           <AddIcon />
-        </Fab>
-      </p>
+      </Fab></p>
+      
+      </div>
       <Paper className='search'>
         <InputBase
           className='inputPatient'
           placeholder="Search your patient"
           inputProps={{ 'aria-label': 'search patient' }}
+          id="search"
+          onChange={event =>setSearch(event.target.value)}
         />
         <IconButton type="submit" className='iconBtn' aria-label="search">
           <SearchIcon />
         </IconButton>
       </Paper>
-      <ul>{renderList(patients)}</ul>
+      <div style={{justifyContent: 'center', alignItems: 'center' }}>
+      {renderList(patients)}
+      </div>
       
     </div>
   );

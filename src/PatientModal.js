@@ -97,10 +97,8 @@ function calcAge(dateString) {
     if(patient == null){
       return (
       
-        <div className = 'moreContainer'style={{ display: 'flex', justifyContent: 'end'}}>
-          <Button onClick={openModal}>
-            More
-          </Button>
+        <div className = 'moreContainer'>
+        <button className="moreBtn" onClick={openModal}>More</button>
           {/* <button className="moreBtn" onClick={openModal}>More</button> */}
           <Modal
             isOpen={modalIsOpen}
@@ -132,18 +130,18 @@ function calcAge(dateString) {
           <div style={{width:'250px'}}>
               <h1>Patient <CloseIcon style={{float:'right'}} onClick={()=>onCloseEdit()}/></h1>
               <ul>
-                <li>Name: {patient.firstname}</li>
-                <li>Surname: {patient.lastname}</li>
-                <li>Age: {calcAge(patient.birthDate)}</li>
-                <li><DatePicker
+                <p>Name: {patient.firstname}</p>
+                <p>Surname: {patient.lastname}</p>
+                <p>Age: {calcAge(patient.birthDate)}</p>
+                <p><DatePicker
                                   id='workDate'
                                   label="Select Start Date"
                                   type='date'
                                   className="dateinput"
                                   defaultValue={patient.startDate.substring(0,10)}
                                   onChange={event =>setStartDate(event.target.value)}
-                                /> </li>
-                <li>Skintype: <select class="Column" name="cars" id="cars" onChange={event =>setSkinType(event.target.value)}>
+                                /> </p>
+                <p>Skintype: <select class="Column" name="cars" id="cars" onChange={event =>setSkinType(event.target.value)}>
                     <option value={patient.skin} selected disabled hidden>{patient.skin}</option> 
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -152,7 +150,7 @@ function calcAge(dateString) {
                     <option value="5">5</option>
                     <option value="6">6</option>
                   </select> 
-            </li>
+                </p>
               </ul>
 
             <div className="SubmitBtn" onClick={()=>onEditPatient()}>
@@ -167,7 +165,7 @@ function calcAge(dateString) {
 
     return (
       
-      <div className = 'moreContainer'style={{ display: 'flex', justifyContent: 'center'}}>
+      <div className = 'moreContainer'>
         <button className="moreBtn" onClick={openModal}>More</button>
         <Modal
           isOpen={modalIsOpen}
@@ -177,13 +175,11 @@ function calcAge(dateString) {
         >
         <div style={{width:'250px'}}>
             <h1>Patient <EditIcon style={{float:'right'}} onClick={()=>onEdit()}/></h1>
-            <ul>
-                <li>Name: {patient.firstname}</li>
-                <li>Surname: {patient.lastname}</li>
-                <li>Age: {calcAge(patient.birthDate)}</li>
-                <li>Startdate: {patient.startDate.substring(0,10)} </li>
-                <li>Skintype: {patient.skin} </li>
-            </ul>
+                <p>Name: {patient.firstname}</p>
+                <p>Surname: {patient.lastname}</p>
+                <p>Age: {calcAge(patient.birthDate)}</p>
+                <p>Startdate: {patient.startDate.substring(0,10)} </p>
+                <p>Skintype: {patient.skin} </p>
         </div>    
         </Modal>
       </div>
