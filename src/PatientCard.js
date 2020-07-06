@@ -11,8 +11,8 @@ function PatientCard(props) {
 
     return (
         <Card style={{ marginBottom: '10px', height: '100px', width: '300px', backgroundColor: '#FFFFFF', opacity: '80%', borderRadius: '15%', justifyContent: 'center',alignItems: 'center'}}>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <h2>{first_name} {last_name}</h2>
+                <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
+                  <h4>{first_name} {last_name}</h4>
                 </div>
                 <div style={{ display: 'flex' , justifyContent: 'right', alignItems: 'right' }}>
                   <PatientModal _id={_id} props={props}/>

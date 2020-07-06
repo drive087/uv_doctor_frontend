@@ -48,7 +48,7 @@ li p {
 .inputPatient{
   margin-left: 5%;
   flex: 2;
-  width: fit-content;
+  width: 370px;
 }
 
 .iconBtn{

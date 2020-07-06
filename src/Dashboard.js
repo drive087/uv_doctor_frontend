@@ -7,15 +7,18 @@ import doctor_icon from './img/doctor-icon.png';
 import PatientModal from './PatientModal';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { Paper, InputBase, IconButton } from '@material-ui/core';
+import { Paper, InputBase, IconButton, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import PatientCard from './PatientCard';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MobileStepper from '@material-ui/core/MobileStepper';
 
 function Dashboard(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
   const [patients, setPatient] = useState(null);
   const [search, setSearch] = useState("");
+  const [pageOffset, setPageOffset] = useState(0);
 
 
   function enterCreatePatient(){
@@ -30,13 +33,16 @@ function Dashboard(props) {
     window.location.reload();
   }
 
-  function renderList(patients){
+  function renderList(patients, pageOffset){
 
-    if(patients == ""){
+    if(search == ""){
+
+      let renderPatients = patients.slice(pageOffset, pageOffset + 5); 
+
       return (      
-        patients.map((patient) => {
+        renderPatients.map((patient) => {
           return (
-            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
             </div>
           )
@@ -48,7 +54,7 @@ function Dashboard(props) {
       patients.map((patient) => {
         if(patient.firstname.includes(search) || patient.lastname.includes(search)){
           return (
-            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
             </div>
           )
@@ -91,13 +97,15 @@ function Dashboard(props) {
   return (
     <div>
       <div className="header">
-          <p className="welcomeText">Welcome  {props.location.state.username} <button onClick={()=>onLogout()}>Logout</button></p> 
+          <h4 style = {{paddingLeft: '5%'}} className="welcomeText">Welcome  {props.location.state.username} 
+            <button onClick={()=>onLogout()}>Logout</button>
+          </h4> 
       </div>
       <div>
-      <p>Patient List 
+      <h4 style = {{paddingLeft: '5%'}}>Patient List 
       <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
           <AddIcon />
-      </Fab></p>
+      </Fab></h4>
       
       </div>
       <Paper className='search'>
@@ -113,9 +121,25 @@ function Dashboard(props) {
         </IconButton>
       </Paper>
       <div style={{justifyContent: 'center', alignItems: 'center' }}>
-      {renderList(patients)}
+        {renderList(patients, pageOffset)}
+        <div style={{justifyContent: 'center', alignItems: 'center' }}>
+        <MobileStepper
+          steps={patients.length}
+          position="static"
+          activeStep={pageOffset}
+          nextButton={
+            <Button size="small" onClick={()=>setPageOffset(pageOffset+5)} disabled={pageOffset === patients.length - 1}>
+              Next
+            </Button>
+          }
+          backButton={
+            <Button size="small" onClick={()=>setPageOffset(pageOffset-5)} disabled={pageOffset === 0}>
+              Back
+            </Button>
+          }
+      />
       </div>
-      
+      </div>
     </div>
   );
 }
