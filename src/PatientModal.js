@@ -181,6 +181,9 @@ function calcAge(dateString) {
                 <p>Startdate: {patient.startDate.substring(0,10)} </p>
                 <p>Skintype: {patient.skin} </p>
         </div>    
+        <div className="Submit2Btn">
+              <p>Submit</p>
+            </div>
         </Modal>
       </div>
     )

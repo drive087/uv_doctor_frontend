@@ -46,7 +46,7 @@ function Dashboard(props) {
     var count = 0;
     return (  
       patients.map((patient) => {
-        if(patient.firstname.includes(search) || patient.lastname.includes(search)){
+        if(patient.firstname.toLowerCase().includes(search.toLowerCase()) || patient.lastname.toLowerCase().includes(search.toLowerCase())){
           return (
             <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
@@ -89,7 +89,7 @@ function Dashboard(props) {
     return(<div>Loading</div>)
   }
   return (
-    <div>
+    <div className="mainContainer">
       <div className="header">
           <p className="welcomeText">Welcome  {props.location.state.username} <button onClick={()=>onLogout()}>Logout</button></p> 
       </div>

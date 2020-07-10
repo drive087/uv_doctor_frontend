@@ -34,15 +34,17 @@ li p {
 
 .header{
   padding: 5% 0% 5% 0%;
-  background-color: rgb(222, 92, 142);
+  background-color: rgb(9, 20, 112);
 
 }
 
 .search{
   padding: '2px 4px';
   display: 'flex';
-  align-items: 'center';
-  width: 100,
+  justify-content: center;
+  align-items: center;
+  width: 50%,
+  
 }
 
 .inputPatient{
@@ -53,4 +55,8 @@ li p {
 
 .iconBtn{
   padding: 5%
+}
+
+.mainContainer{
+  background-color: rgb(230, 255, 255);
 }
