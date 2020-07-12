@@ -63,6 +63,7 @@ function Login(props) {
   return (
     <div className="container" >
         <img 
+        className = "logo"
         src={doctor_icon} 
         width="260x" 
         height="250px"

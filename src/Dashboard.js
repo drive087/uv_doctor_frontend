@@ -10,10 +10,28 @@ import AddIcon from '@material-ui/icons/Add';
 import { Paper, InputBase, IconButton, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import PatientCard from './PatientCard';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MobileStepper from '@material-ui/core/MobileStepper';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1)
+  },
+  welcome: {
+    margin: theme.spacing(1),
+    marginLeft: 0,
+    textTransform: 'capitalize',
+    color: 'white',
+    display: 'inline-flex',
+    paddingLeft: '5%',
+    alignSelf: 'center'
+  }
+}));
+
 
 function Dashboard(props) {
+  const classes = useStyles();
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
   const [patients, setPatient] = useState(null);
@@ -97,15 +115,24 @@ function Dashboard(props) {
   return (
     <div className="mainContainer">
       <div className="header">
-          <h4 style = {{paddingLeft: '5%'}} className="welcomeText">Welcome  {props.location.state.username} 
-            <button onClick={()=>onLogout()}>Logout</button>
-          </h4> 
+          <h2 className={classes.welcome}>Welcome  {props.location.state.username}</h2> 
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            className={classes.button}
+            startIcon={<ExitToAppIcon />}
+            onClick={()=>onLogout()}
+          >
+          Logout
+        </Button>
       </div>
       <div>
-      <h4 style = {{paddingLeft: '5%'}}>Patient List 
-      <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
-          <AddIcon />
-      </Fab></h4>
+      <h3 style = {{paddingLeft: '5%'}}>Patient List 
+        <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
+            <AddIcon />
+        </Fab>
+      </h3>
       
       </div>
       <Paper className='search'>
@@ -128,12 +155,12 @@ function Dashboard(props) {
           position="static"
           activeStep={pageOffset}
           nextButton={
-            <Button size="small" onClick={()=>setPageOffset(pageOffset+5)} disabled={pageOffset === patients.length - 1}>
+            <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset+5)} disabled={pageOffset === patients.length - 1}>
               Next
             </Button>
           }
           backButton={
-            <Button size="small" onClick={()=>setPageOffset(pageOffset-5)} disabled={pageOffset === 0}>
+            <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset-5)} disabled={pageOffset === 0}>
               Back
             </Button>
           }

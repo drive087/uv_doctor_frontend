@@ -6,6 +6,10 @@ audio { display:none;}
   }
 }
 
+.logo{
+  margin-top: 10%;
+}
+
 .container {
   min-height: 100vh;
   display: flex;

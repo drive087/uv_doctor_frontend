@@ -24,7 +24,6 @@ li p {
 
 .welcomeText{
   display: inline;
-  padding-top: '20px';
   color: white;
 }
 
@@ -33,9 +32,10 @@ li p {
 }
 
 .header{
+  display: flex;
+  align-items: center;
   padding: 5% 0% 5% 0%;
   background-color: rgb(9, 20, 112);
-
 }
 
 .search{
