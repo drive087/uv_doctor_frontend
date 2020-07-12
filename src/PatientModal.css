@@ -36,4 +36,20 @@
   border-radius: 1vw;
 }
 
+.Submit2Btn{
+  width: 25vw;
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  background-color:darkgrey;
+  font-weight: 500;
+  border-radius: 1vw;
+  pointer-events: none;
+  /* for "disabled" effect */
+  opacity: 0.5;
+}
+
+
 

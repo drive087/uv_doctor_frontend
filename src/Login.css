@@ -13,8 +13,7 @@ audio { display:none;}
   align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  background-color: rgb(255, 255, 255);
-  color: white;
+  background-color: rgb(230, 255, 255);
 }
 
 .inputContainer{
@@ -28,73 +27,6 @@ audio { display:none;}
   color: white;
 }
 
-.morningColor {
-  background-color:#1f5476;
-  background:linear-gradient(0deg, #1f5476 0%, #ffe5a2 90%);
-}
-
-.noonColor {
-  background-color:rgb(255, 255, 255);
-  background:linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(0, 162, 255) 100%);
-}
-
-.eveningColor {
-  background-color:#ff6f01;
-  background:linear-gradient(0deg,#ff6f01 0%,#983275 50%,#641649 90%);
-}
-
-.nightColor {
-  background-color:#2B2F77;
-  background:linear-gradient(0deg,#2B2F77 0%,#141852 50%,#070B34 90%);
-}
-
-.crop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 50vw;
-  overflow: hidden;
-  /* animation-name: skyColor;
-  animation-duration: 60s;
-  animation-iteration-count: infinite; */
-}
-
-.crop img{
-  width: 40vw;
-  height: 40vw;
-  display: block;
-}
-.spin {
-  position: absolute;
-  -webkit-animation:spin 60s linear infinite;
-  -moz-animation:spin 60s linear infinite;
-  animation:spin 60s linear infinite;
-}
-@-moz-keyframes spin { 
-  100% { -moz-transform: rotate(360deg); } 
-}
-@-webkit-keyframes spin { 
-  100% { -webkit-transform: rotate(360deg); } 
-}
-@keyframes spin { 
-  100% { -webkit-transform: rotate(360deg); transform:rotate(360deg);} 
-} 
-
-.bounce {
-  -webkit-animation:bounce 2s infinite alternate;
-  -moz-animation:bounce 2s infinite alternate;
-  animation:bounce 2s infinite alternate;
-}
-@keyframes bounce {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(-10px);
-  }
-}
 
 .input input{
   align-items: center;
@@ -324,23 +256,3 @@ audio { display:none;}
 .button p{
   margin: 0;
 }
-
-.start{
-  background-color: #3bd677;
-}
-
-.end{
-  background-color: #e43b3b;
-}
-
-.calendarContainer{
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
-  background-color: rgb(255, 255, 255);
-  color: white;
-}
-
