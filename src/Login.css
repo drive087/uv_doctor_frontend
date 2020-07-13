@@ -13,7 +13,7 @@ audio { display:none;}
   align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  background-color: rgb(230, 255, 255);
+  background: linear-gradient(180deg, rgb(142, 255, 255) 0%, rgba(230, 249, 255, 0) 100%);
 }
 
 .inputContainer{

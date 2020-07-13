@@ -9,6 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Paper, InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PatientCard from './PatientCard';
 
 function Dashboard(props) {
@@ -36,7 +37,7 @@ function Dashboard(props) {
       return (      
         patients.map((patient) => {
           return (
-            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
             </div>
           )
@@ -48,7 +49,7 @@ function Dashboard(props) {
       patients.map((patient) => {
         if(patient.firstname.toLowerCase().includes(search.toLowerCase()) || patient.lastname.toLowerCase().includes(search.toLowerCase())){
           return (
-            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
             </div>
           )
@@ -91,7 +92,7 @@ function Dashboard(props) {
   return (
     <div className="mainContainer">
       <div className="header">
-          <p className="welcomeText">Welcome  {props.location.state.username} <button onClick={()=>onLogout()}>Logout</button></p> 
+      <p className="welcomeText">{props.location.state.username}</p> <ExitToAppIcon className="logoutBtn" onClick={()=>onLogout()}/>
       </div>
       <div>
       <p>Patient List 
@@ -100,6 +101,7 @@ function Dashboard(props) {
       </Fab></p>
       
       </div>
+      <div className="searchContainer">
       <Paper className='search'>
         <InputBase
           className='inputPatient'
@@ -112,6 +114,7 @@ function Dashboard(props) {
           <SearchIcon />
         </IconButton>
       </Paper>
+      </div>
       <div style={{justifyContent: 'center', alignItems: 'center' }}>
       {renderList(patients)}
       </div>

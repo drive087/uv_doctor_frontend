@@ -24,8 +24,12 @@ li p {
 
 .welcomeText{
   display: inline;
-  padding-top: '20px';
-  color: white;
+  color: rgb(0, 0, 0);
+  margin-left:auto; 
+  margin-right:0;
+}
+
+.logoutBtn{
 }
 
 .moreBtn{
@@ -33,30 +37,37 @@ li p {
 }
 
 .header{
-  padding: 5% 0% 5% 0%;
-  background-color: rgb(9, 20, 112);
-
+  padding: 3% 0% 2% 0%;
 }
 
 .search{
   padding: '2px 4px';
-  display: 'flex';
-  justify-content: center;
-  align-items: center;
-  width: 50%,
+  width: 300px;
+  height: 40px;
+  border-radius: 30px;
   
 }
 
 .inputPatient{
   margin-left: 5%;
   flex: 2;
-  width: fit-content;
+  width: fit-content;  
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .iconBtn{
-  padding: 5%
+  float: right;  
 }
 
 .mainContainer{
-  background-color: rgb(230, 255, 255);
+  /* background-color: rgb(230, 255, 255); */
+  background: linear-gradient(180deg, rgb(142, 255, 255) 0%, rgba(230, 249, 255, 0) 100%);
+
+
+}
+
+.searchContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
