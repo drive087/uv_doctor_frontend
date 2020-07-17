@@ -13,8 +13,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PatientCard from './PatientCard';
 
 function Dashboard(props) {
-  const [username, setUser] = useState(null);
-  const [password, setPass] = useState(null);
   const [patients, setPatient] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -59,8 +57,8 @@ function Dashboard(props) {
           if(count == patients.length){
             return (
               <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-                  Not Found
-            </div>
+                  <h2>Not Found</h2>
+              </div>
             )
           }
         }
@@ -94,12 +92,11 @@ function Dashboard(props) {
       <div className="header">
       <p className="welcomeText">{props.location.state.username}</p> <ExitToAppIcon className="logoutBtn" onClick={()=>onLogout()}/>
       </div>
-      <div>
-      <p>Patient List 
-      <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
-          <AddIcon />
-      </Fab></p>
-      
+      <div className="patientList">
+        <h3 className="patientListText">Patient List</h3> 
+        <Fab color="primary" aria-label="add" style={{marginLeft:'50%', marginTop:'0%', width:'8.6%', height:'47%'}} onClick={()=>enterCreatePatient()}>
+            <AddIcon />
+        </Fab>
       </div>
       <div className="searchContainer">
       <Paper className='search'>

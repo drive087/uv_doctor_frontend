@@ -66,6 +66,7 @@ function Login(props) {
         src={doctor_icon} 
         width="260x" 
         height="250px"
+    
         />
       <div className="inputContainer" style={{height:'200px'}}>
         <FloatingLabelInput
