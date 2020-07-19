@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     display: 'inline-flex',
     paddingLeft: '5%',
-    alignSelf: 'center'
+    alignItems: 'center'
   }
 }));
 
@@ -55,7 +55,7 @@ function Dashboard(props) {
 
     if(search == ""){
 
-      let renderPatients = patients.slice(pageOffset, pageOffset + 5); 
+      let renderPatients = patients.slice(pageOffset, pageOffset + 4); 
 
       return (      
         renderPatients.map((patient) => {
@@ -115,7 +115,7 @@ function Dashboard(props) {
   return (
     <div className="mainContainer">
       <div className="header">
-          <h2 className={classes.welcome}>Welcome  {props.location.state.username}</h2> 
+          <h2 style={{fontSize: '30px'}} className={classes.welcome}>Welcome  {props.location.state.username} 
           <Button
             variant="contained"
             color="secondary"
@@ -126,13 +126,14 @@ function Dashboard(props) {
           >
           Logout
         </Button>
+        </h2>
       </div>
       <div>
-      <h3 style = {{paddingLeft: '5%'}}>Patient List 
+      <h2 style = {{paddingLeft: '5%'}}>Patient List 
         <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
             <AddIcon />
         </Fab>
-      </h3>
+      </h2>
       
       </div>
       <Paper className='search'>
@@ -149,22 +150,22 @@ function Dashboard(props) {
       </Paper>
       <div style={{justifyContent: 'center', alignItems: 'center' }}>
         {renderList(patients, pageOffset)}
-        <div style={{justifyContent: 'center', alignItems: 'center' }}>
-        <MobileStepper
-          steps={patients.length}
-          position="static"
-          activeStep={pageOffset}
-          nextButton={
-            <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset+5)} disabled={pageOffset === patients.length - 1}>
-              Next
-            </Button>
-          }
-          backButton={
-            <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset-5)} disabled={pageOffset === 0}>
-              Back
-            </Button>
-          }
-      />
+        <div className='footer' style={{justifyContent: 'center', alignItems: 'center'}}>
+          <MobileStepper
+            steps={patients.length}
+            position="static"
+            activeStep={pageOffset}
+            nextButton={
+              <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset+(patients.length%4))} disabled={pageOffset + 4 >= patients.length - 1}>
+                Next
+              </Button>
+            }
+            backButton={
+              <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset-(patients.length%4))} disabled={pageOffset === 0}>
+                Back
+              </Button>
+            }
+        />
       </div>
       </div>
     </div>

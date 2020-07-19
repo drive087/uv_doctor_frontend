@@ -43,8 +43,7 @@ li p {
   display: 'flex';
   justify-content: center;
   align-items: center;
-  width: 50%,
-  
+  margin-bottom: 20px;
 }
 
 .inputPatient{
@@ -59,4 +58,9 @@ li p {
 
 .mainContainer{
   background-color: rgb(230, 255, 255);
+}
+
+.footer{
+  margin-top:calc(4% + 0px);
+  bottom: 0;
 }

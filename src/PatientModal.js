@@ -126,7 +126,6 @@ function calcAge(dateString) {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            {    console.log(patient)}
           <div style={{width:'250px'}}>
               <h1>Patient <CloseIcon style={{float:'right'}} onClick={()=>onCloseEdit()}/></h1>
               <ul>
