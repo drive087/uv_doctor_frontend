@@ -16,6 +16,8 @@ function Login(props) {
 
   useEffect(() => {
 
+    if (localStorage.getItem('token') != "null"){
+
       axios.get('http://localhost:8080/login',
       {
         headers: { Authorization: `Token ${localStorage.getItem('token')}` }
@@ -29,6 +31,8 @@ function Login(props) {
             });
           }
       })
+    }
+
   },[])
 
   function login(username,password,history){
