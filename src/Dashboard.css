@@ -24,39 +24,65 @@ li p {
 
 .welcomeText{
   display: inline;
-  color: white;
+  color: rgb(0, 0, 0);
+  margin-left:auto; 
+  margin-right:10px;
+  margin-top: 4px;
 }
+
+.patientList{
+  display: flex;
+  height: 60px;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.patientListText{
+  display: inline;
+  margin-left: 20px;
+}
+
 
 .moreBtn{
   margin-left: 20%;
 }
 
 .header{
+  padding: 0% 0% 5% 0%;
+  height: 20px;
   display: flex;
-  align-items: center;
-  padding: 5% 0% 5% 0%;
-  background-color: rgb(9, 20, 112);
+  justify-content: right;
+  align-items: right;
 }
 
 .search{
+  display: flex;
   padding: '2px 4px';
-  display: 'flex';
-  justify-content: center;
+  width: 300px;
+  height: 40px;
+  border-radius: 30px;
   align-items: center;
-  width: 50%,
   
 }
 
 .inputPatient{
   margin-left: 5%;
   flex: 2;
-  width: 370px;
+  width: fit-content;  
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .iconBtn{
-  padding: 5%
+  float: right;  
 }
 
 .mainContainer{
-  background-color: rgb(230, 255, 255);
+  /* background-color: rgb(230, 255, 255); */
+  background: linear-gradient(180deg, rgb(142, 255, 255) 0%, rgba(230, 249, 255, 0) 100%);
+}
+
+.searchContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

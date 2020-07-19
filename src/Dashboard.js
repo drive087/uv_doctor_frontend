@@ -1,16 +1,15 @@
 import React , { useState, useEffect } from 'react';
 import './Dashboard.css';
-import FloatingLabelInput from 'react-floating-label-input';
 import axios from '../node_modules/axios';
 import { withRouter } from 'react-router-dom';
-import doctor_icon from './img/doctor-icon.png';
-import PatientModal from './PatientModal';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Paper, InputBase, IconButton, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import PatientCard from './PatientCard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import PatientCard from './PatientCard';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,15 +24,12 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     display: 'inline-flex',
     paddingLeft: '5%',
-    alignSelf: 'center'
+    alignItems: 'center'
   }
 }));
 
 
 function Dashboard(props) {
-  const classes = useStyles();
-  const [username, setUser] = useState(null);
-  const [password, setPass] = useState(null);
   const [patients, setPatient] = useState(null);
   const [search, setSearch] = useState("");
   const [pageOffset, setPageOffset] = useState(0);
@@ -60,7 +56,7 @@ function Dashboard(props) {
       return (      
         renderPatients.map((patient) => {
           return (
-            <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
             </div>
           )
@@ -72,7 +68,7 @@ function Dashboard(props) {
       patients.map((patient) => {
         if(patient.firstname.toLowerCase().includes(search.toLowerCase()) || patient.lastname.toLowerCase().includes(search.toLowerCase())){
           return (
-            <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
               <PatientCard first_name = {patient.firstname} last_name = {patient.lastname} _id = {patient._id} />
             </div>
           )
@@ -81,9 +77,9 @@ function Dashboard(props) {
           count = count + 1;
           if(count == patients.length){
             return (
-              <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-                  Not Found
-            </div>
+              <div key={patient._id} style={{display:'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+                  <h2>Not Found</h2>
+              </div>
             )
           }
         }
@@ -115,31 +111,21 @@ function Dashboard(props) {
   return (
     <div className="mainContainer">
       <div className="header">
-          <h2 className={classes.welcome}>Welcome  {props.location.state.username}</h2> 
-          <Button
-            variant="contained"
-            color="secondary"
-            size="small"
-            className={classes.button}
-            startIcon={<ExitToAppIcon />}
-            onClick={()=>onLogout()}
-          >
-          Logout
-        </Button>
+      <p className="welcomeText">{props.location.state.username}</p> <ExitToAppIcon style={{paddingTop:"1%", paddingRight:"1%"}} className="logoutBtn" onClick={()=>onLogout()}/>
       </div>
-      <div>
-      <h3 style = {{paddingLeft: '5%'}}>Patient List 
-        <Fab color="primary" aria-label="add"  style={{marginLeft:'60%', marginTop:'0%', width:'8.6%', height:'47%'}}onClick={()=>enterCreatePatient()}>
+      <div className="patientList">
+        <h3 className="patientListText">Patient List</h3> 
+        <Fab color="primary" aria-label="add" size="small" style={{marginLeft:'50%', marginTop:'0%'}} onClick={()=>enterCreatePatient()}>
             <AddIcon />
         </Fab>
-      </h3>
-      
       </div>
+      <div className="searchContainer">
       <Paper className='search'>
         <InputBase
           className='inputPatient'
           placeholder="Search your patient"
           inputProps={{ 'aria-label': 'search patient' }}
+          autoFocus="True"
           id="search"
           onChange={event =>setSearch(event.target.value)}
         />
@@ -147,24 +133,25 @@ function Dashboard(props) {
           <SearchIcon />
         </IconButton>
       </Paper>
+      </div>
       <div style={{justifyContent: 'center', alignItems: 'center' }}>
         {renderList(patients, pageOffset)}
-        <div style={{justifyContent: 'center', alignItems: 'center' }}>
-        <MobileStepper
-          steps={patients.length}
-          position="static"
-          activeStep={pageOffset}
-          nextButton={
-            <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset+5)} disabled={pageOffset === patients.length - 1}>
-              Next
-            </Button>
-          }
-          backButton={
-            <Button variant="contained" size="small" onClick={()=>setPageOffset(pageOffset-5)} disabled={pageOffset === 0}>
-              Back
-            </Button>
-          }
-      />
+        <div className='footer' style={{marginTop:"5%", justifyContent: 'center', alignItems: 'center'}}>
+          <MobileStepper
+            steps={parseInt((patients.length+4)/5)}
+            position="static"
+            activeStep={parseInt((pageOffset+4)/5)}
+            nextButton={
+              <IconButton variant="contained" size="small" onClick={()=>setPageOffset(pageOffset+(patients.length%5))} disabled={pageOffset + 5 >= patients.length - 1}>
+               <NavigateNextIcon/>
+              </IconButton>
+            }
+            backButton={
+              <IconButton variant="contained" size="small" onClick={()=>setPageOffset(pageOffset-(patients.length%5))} disabled={pageOffset === 0}>
+                 <NavigateBeforeIcon/>
+              </IconButton>
+            }
+        />
       </div>
       </div>
     </div>

@@ -125,7 +125,7 @@ function CreatePatient(props) {
             </div>
         </div>
         <div className="CreateBtn" onClick={()=>onCreatePatient()}>
-            <p>Create</p>
+            <p style={{paddingLeft:0}}>Create</p>
         </div>
     </div>
 
